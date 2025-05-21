@@ -2,6 +2,7 @@ package com.example.CRUD_springBoot.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -14,6 +15,8 @@ public class Student {
     private String firstName;
     private String lastName;
     private int age;
+
+    public Student () {}
 
     public Student(String firstName, String lastName, int age) {
         this.firstName = firstName;
@@ -49,5 +52,4 @@ public class Student {
         this.age = age;
     }
 
-    
 }

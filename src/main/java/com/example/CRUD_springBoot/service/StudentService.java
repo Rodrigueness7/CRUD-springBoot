@@ -34,11 +34,11 @@ public class StudentService {
         studentRepository.deleteById(id);
     } 
 
-    public Optional<Student> update(Long id, Student updaStudent) {
+    public Optional<Student> update(Long id, Student updateStudent) {
         return studentRepository.findById(id).map(existing -> {
-            existing.setFirstName(updaStudent.getFirstName());
-            existing.setLastName(updaStudent.getLastName());
-            existing.setAge((updaStudent.getAge()));
+            existing.setFirstName(updateStudent.getFirstName());
+            existing.setLastName(updateStudent.getLastName());
+            existing.setAge((updateStudent.getAge()));
             return studentRepository.save(existing);
         });
     }
