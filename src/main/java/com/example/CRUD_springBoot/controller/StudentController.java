@@ -3,6 +3,7 @@ package com.example.CRUD_springBoot.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,10 +34,10 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Student> findById(@PathVariable Long id) {
-        return studentService.findById(id)
-        .map(ResponseEntity::ok)
-        .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?>findById(@PathVariable Long id) {
+        Student student = studentService.findById(id);
+        return ResponseEntity.ok(student);
+        
     }
     
     @PostMapping("/add")
@@ -55,12 +56,8 @@ public class StudentController {
      
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        Optional<Student> student = studentService.findById(id);
-        if(student.isPresent()) {
-            studentService.deleteById(id);
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
+        studentService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

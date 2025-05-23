@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.CRUD_springBoot.exception.ResourceNotFindException;
 import com.example.CRUD_springBoot.model.Student;
 import com.example.CRUD_springBoot.repository.StudentRepository;
 
@@ -21,8 +22,9 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Optional<Student> findById(long id) {
-        return studentRepository.findById(id);
+    public Student findById(long id) {
+        return studentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFindException("Student with ID " + id + " not find"));
         
     }
 
@@ -31,6 +33,11 @@ public class StudentService {
     }
 
     public void deleteById(Long id) {
+
+        if(!studentRepository.existsById(id)) {
+            throw new ResourceNotFindException("Student with ID" + id + "not find");
+        }
+
         studentRepository.deleteById(id);
     } 
 
