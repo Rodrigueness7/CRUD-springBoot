@@ -8,5 +8,5 @@ import com.example.CRUD_springBoot.model.Student;
 @Repository
 public interface StudentRepository extends JpaRepository <Student, Long> {
 
-    boolean existsByFirstName(String firstName);
+    boolean existsByFirstName(String student);
 }

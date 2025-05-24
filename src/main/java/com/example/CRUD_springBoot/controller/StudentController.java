@@ -3,7 +3,6 @@ package com.example.CRUD_springBoot.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,7 +41,8 @@ public class StudentController {
     
     @PostMapping("/add")
     public Student add(@RequestBody Student student) {
-        return studentService.add(student);      
+        return studentService.add(student);
+          
     }
 
     @PutMapping("/{id}")

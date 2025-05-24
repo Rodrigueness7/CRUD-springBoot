@@ -29,13 +29,16 @@ public class StudentService {
     }
 
     public Student add(Student student) {
+        if(studentRepository.existsByFirstName(student.getFirstName())){
+            throw new ResourceNotFindException("Already exist student with these firstName");
+        }
         return studentRepository.save(student);
     }
 
     public void deleteById(Long id) {
 
         if(!studentRepository.existsById(id)) {
-            throw new ResourceNotFindException("Student with ID" + id + "not find");
+            throw new ResourceNotFindException("Id not found");
         }
 
         studentRepository.deleteById(id);
